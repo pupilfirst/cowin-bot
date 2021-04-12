@@ -9,19 +9,19 @@ module.exports = {
   mode: isProd ? "production" : "development",
   output: {
     path: outputDir,
-    filename: "Index.js"
+    filename: "Index.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      inject: false
-    })
+      inject: false,
+    }),
   ],
   devServer: {
     compress: true,
     contentBase: outputDir,
     port: process.env.PORT || 8000,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -30,13 +30,18 @@ module.exports = {
         use: [
           "style-loader",
           { loader: "css-loader", options: { importLoaders: 1 } },
-          "postcss-loader"
-        ]
+          "postcss-loader",
+        ],
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
-        type: 'asset/resource'
-      }
-    ]
-  }
+        type: "asset/resource",
+      },
+      {
+        test: /\.ya?ml$/,
+        type: "json",
+        use: "yaml-loader",
+      },
+    ],
+  },
 };

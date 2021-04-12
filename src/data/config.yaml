@@ -1,0 +1,9 @@
+default:
+  - title: Hola
+    action:
+      meta: LOAD_DATA_FROM_LINK
+      link: some_url
+  - title: Hola Foo
+    action:
+      meta: LOAD_DATA_FROM_LINK
+      link: some_url

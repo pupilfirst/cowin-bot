@@ -1,0 +1,20 @@
+{
+  "prompts": [
+    {
+      "group": "default",
+      "title": "show some values",
+      "action": {
+        "type": "LOAD_DATA_FROM_LINK",
+        "meta": { "link": "some_url" }
+      }
+    },
+    {
+      "group": "default",
+      "title": "show some values",
+      "action": {
+        "type": "LOAD_DATA_FROM_LINK",
+        "meta": { "link": "some_url" }
+      }
+    }
+  ]
+}
