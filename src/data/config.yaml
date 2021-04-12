@@ -1,9 +1,14 @@
 default:
-  - title: Hola
+  - title: Get Started
     action:
-      meta: LOAD_DATA_FROM_LINK
-      link: some_url
-  - title: Hola Foo
+      actionType: ChangeFilterGroup
+      group_name: greet
+greet:
+  - title: Help me with registration
     action:
-      meta: LOAD_DATA_FROM_LINK
-      link: some_url
+      actionType: LoadDataFromLink
+      link: docs/faq/how_to_schedule_appointment.md
+  - title: Help me Appointment Scheduling
+    action:
+      actionType: LoadDataFromLink
+      link: docs/faq/how_to_schedule_appointment.md

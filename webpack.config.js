@@ -1,4 +1,5 @@
 const path = require("path");
+var webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const outputDir = path.join(__dirname, "build/");
 
@@ -16,6 +17,9 @@ module.exports = {
       template: "src/index.html",
       inject: false,
     }),
+    new webpack.ProvidePlugin({
+      Buffer: ["buffer", "Buffer"],
+    }),
   ],
   devServer: {
     compress: true,
@@ -23,6 +27,7 @@ module.exports = {
     port: process.env.PORT || 8000,
     historyApiFallback: true,
   },
+
   module: {
     rules: [
       {

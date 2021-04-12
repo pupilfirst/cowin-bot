@@ -3,9 +3,9 @@ type t = LoadDataFromLink(link) | ShowArticleLink(link) | ChangeFilterGroup(stri
 
 let make = json => {
   switch json["actionType"] {
-  | "LoadDataFromLink" => LoadDataFromLink(json["meta"]["link"])
-  | "ShowArticleLink" => LoadDataFromLink(json["meta"]["link"])
-  | "ChangeFilterGroup" => LoadDataFromLink(json["meta"]["link"])
+  | "LoadDataFromLink" => LoadDataFromLink(json["link"])
+  | "ShowArticleLink" => ShowArticleLink(json["link"])
+  | "ChangeFilterGroup" => ChangeFilterGroup(json["group_name"])
   | "NoAction" => NoAction
   | _ => NoAction
   }
