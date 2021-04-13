@@ -116,7 +116,7 @@ let updateGroup = (send, group) => {
 
 let messageClasses = message => {
   switch Message.by(message) {
-  | Bot => "border rounded-lg shadow inline-flex px-4 py-1 text-md text-gray-800 bg-blue-700 items-start flex-col"
+  | Bot => "border rounded-lg shadow inline-flex px-4 py-1 text-md text-gray-800 bg-white items-start flex-col"
   | User => "border rounded-lg shadow inline-flex px-4 py-1 text-md text-white bg-blue-700 items-end flex-col"
   }
 }
