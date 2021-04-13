@@ -8,7 +8,7 @@ greet:
     action:
       actionType: LoadDataFromLink
       link: docs/faq/how_to_schedule_appointment.md
-  - title: Help me Appointment Scheduling
+  - title: Help me with appointment scheduling
     action:
       actionType: LoadDataFromLink
       link: docs/faq/how_to_schedule_appointment.md
