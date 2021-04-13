@@ -139,7 +139,7 @@ let make = () => {
   <div className="container fixed bottom-0 right-0 flex flex-col max-w-sm px-2 z-40 w-full">
     {state.showChat
       ? <div
-          className=" transition duration-700 ease-in-outbg-white shadow-lg rounded-lg relative overflow-hidden w-full h-96 border">
+          className=" transition duration-700 ease-in-outbg-white shadow-lg rounded-lg relative overflow-hidden w-full custom-height border">
           <div className=" overflow-y-auto p-4 space-y-4 items-end h-full justify-end">
             <div className="flex flex-col z-10 ml-4 text-white w-full">
               <div className="text-3xl mb-2 text-gray-800"> {str("Hi")} </div>
