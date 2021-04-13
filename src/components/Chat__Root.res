@@ -9,30 +9,41 @@ type state = {
   saving: bool,
   userActions: array<Prompt.t>,
   selectedGroup: string,
+  messages: array<Message.t>,
 }
 
 type action =
   | SetSaving
+  | SetLoading
   | ClearSaving
+  | ClearLoading
   | ShowChat
   | HideChat
   | ToggleShowChat
   | AppendUserAction(Prompt.t)
   | SetSelectedGroup(string)
+  | AppendMessages(Message.t)
 
 let reducer = (state, action) =>
   switch action {
   | SetSaving => {...state, saving: true}
+  | ClearLoading => {...state, loading: false}
   | ClearSaving => {...state, saving: false}
+  | SetLoading => {...state, loading: true}
   | ShowChat => {...state, showChat: true}
   | HideChat => {...state, showChat: false}
   | ToggleShowChat => {...state, showChat: !state.showChat}
   | AppendUserAction(action) => {
       ...state,
-      userActions: Js.Array.concat([action], state.userActions),
+      userActions: Js.Array.concat(state.userActions, [action]),
+      messages: Js.Array.concat([Message.addUserInput(Prompt.title(action))], state.messages),
       loading: true,
     }
   | SetSelectedGroup(group) => {...state, selectedGroup: group, loading: false}
+  | AppendMessages(message) => {
+      ...state,
+      messages: Js.Array.concat([message], state.messages),
+    }
   }
 
 let computeInitialState = () => {
@@ -41,6 +52,23 @@ let computeInitialState = () => {
   saving: false,
   userActions: [],
   selectedGroup: "default",
+  messages: [],
+}
+
+let handleGithubresponseCB = (send, json) => {
+  let data = Json.Decode.field("content", Json.Decode.string, json)
+  let base64DecodedData = Webapi.Base64.atob(data)
+  let dataArray = Js.Array.filter(f => f !== "", ParseMD.parse(base64DecodedData))
+
+  Js.Array.forEach(d => send(AppendMessages(Message.addBotInput(d))), dataArray)
+  send(SetSelectedGroup("default"))
+}
+
+let importDataFromGithub = (slug, send) => {
+  let url = "https://api.github.com/repos/pupilfirst/cowinindia.org/contents/" ++ slug
+  send(SetLoading)
+  let errorCB = d => Js.log(d)
+  Api.get(url, handleGithubresponseCB(send), errorCB)
 }
 
 let filteredActions = (actions, group) => {
@@ -83,13 +111,30 @@ let toggleButton = (state, send) => {
 }
 
 let updateGroup = (send, group) => {
-  Js.log(group)
   send(SetSelectedGroup(group))
 }
 
+let messageClasses = message => {
+  switch Message.by(message) {
+  | Bot => "border rounded-lg shadow inline-flex px-4 py-1 text-md text-gray-800 bg-blue-700 items-start flex-col"
+  | User => "border rounded-lg shadow inline-flex px-4 py-1 text-md text-white bg-blue-700 items-end flex-col"
+  }
+}
 @react.component
 let make = () => {
   let (state, send) = React.useReducer(reducer, computeInitialState())
+  React.useEffect1(() => {
+    ArrayUtils.isEmpty(state.userActions)
+      ? ()
+      : switch Prompt.action(state.userActions[0]) {
+        | LoadDataFromLink(slug) => importDataFromGithub(slug, send)
+        | ShowArticleLink(link) => TimerUtils.setTimeout(_ => updateGroup(send, "default"), 10)
+        | ChangeFilterGroup(group) => TimerUtils.setTimeout(_ => updateGroup(send, group), 10)
+        | NoAction => TimerUtils.setTimeout(_ => updateGroup(send, "default"), 10)
+        }
+
+    None
+  }, [state.userActions])
 
   <div className="container fixed bottom-0 right-0 flex flex-col max-w-sm px-2 z-40 w-full">
     {state.showChat
@@ -104,11 +149,12 @@ let make = () => {
             </div>
             <div className="space-y-2 flex flex-col">
               {Js.Array.mapi(
-                (p, i) =>
-                  <Chat__Prompt
-                    prompt={p} key={string_of_int(i)} updateGroupCB={updateGroup(send)}
+                (m, i) =>
+                  <div
+                    dangerouslySetInnerHTML={"__html": ParseMD.convert(Message.text(m))}
+                    className={messageClasses(m)}
                   />,
-                state.userActions,
+                state.messages,
               )->React.array}
             </div>
             {ReactUtils.nullIf(
