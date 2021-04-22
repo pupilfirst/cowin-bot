@@ -115,10 +115,10 @@ let updateGroup = (send, group) => {
 }
 
 let messageClasses = message => {
-  let d = "t-border t-rounded-lg t-shadow t-inline-flex t-px-4 t-py-1 t-text-md t-text-gray-800 t-bg-white t-items-start t-flex-col"
+  let d = "t-border t-rounded-lg t-shadow t-inline-flex t-px-4 t-py-1 t-text-md "
   switch Message.by(message) {
-  | Bot => d ++ " t-text-gray-800 t-bg-white t-items-start t-flex-col"
-  | User => d ++ " t-text-md t-text-white t-bg-blue-700 t-items-end t-flex-col"
+  | Bot => d ++ "t-text-gray-800  t-bg-white t-items-start t-flex-col"
+  | User => d ++ "t-text-white t-bg-blue-700 t-items-end t-flex-col"
   }
 }
 @react.component
