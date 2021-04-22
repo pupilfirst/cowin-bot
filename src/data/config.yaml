@@ -7,8 +7,8 @@ greet:
   - title: Help me with registration
     action:
       actionType: LoadDataFromLink
-      link: docs/faq/how_to_schedule_appointment.md
+      link: docs/en/vaccines/aefi.md
   - title: Help me with appointment scheduling
     action:
       actionType: LoadDataFromLink
-      link: docs/faq/how_to_schedule_appointment.md
+      link: docs/en/vaccines/aefi.md

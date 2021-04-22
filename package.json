@@ -21,13 +21,15 @@
   "dependencies": {
     "@glennsl/bs-json": "^5.0.2",
     "@rescript/react": "^0.10.1",
+    "algoliasearch": "^4.9.0",
     "bs-fetch": "^0.6.2",
     "bs-webapi": "^0.19.1",
     "buffer": "^6.0.3",
     "gray-matter": "^4.0.2",
     "markdown-it": "^12.0.4",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-instantsearch-dom": "^6.10.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
