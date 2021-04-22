@@ -76,11 +76,11 @@ let filteredActions = (actions, group) => {
 }
 
 let toggleButton = (state, send) => {
-  <div className="flex justify-end">
+  <div className="t-flex t-justify-end">
     <button
       onClick={_ => send(ToggleShowChat)}
-      className={"bg-blue-600 rounded-full w-16 h-16 my-4 mx-2 flex items-center justify-center cursor-pointer shadow-xl text-white " ++ {
-        state.showChat ? "" : "animate-bounce "
+      className={"t-bg-blue-600 t-rounded-full t-w-16 t-h-16 t-my-4 t-mx-2 t-flex t-items-center t-justify-center t-cursor-pointer t-shadow-xl t-text-white " ++ {
+        state.showChat ? "" : "t-animate-bounce "
       }}>
       {state.showChat
         ? <svg
@@ -115,9 +115,10 @@ let updateGroup = (send, group) => {
 }
 
 let messageClasses = message => {
+  let d = "t-border t-rounded-lg t-shadow t-inline-flex t-px-4 t-py-1 t-text-md t-text-gray-800 t-bg-white t-items-start t-flex-col"
   switch Message.by(message) {
-  | Bot => "border rounded-lg shadow inline-flex px-4 py-1 text-md text-gray-800 bg-white items-start flex-col"
-  | User => "border rounded-lg shadow inline-flex px-4 py-1 text-md text-white bg-blue-700 items-end flex-col"
+  | Bot => d ++ " t-text-gray-800 t-bg-white t-items-start t-flex-col"
+  | User => d ++ " t-text-md t-text-white t-bg-blue-700 t-items-end t-flex-col"
   }
 }
 @react.component
@@ -136,18 +137,19 @@ let make = () => {
     None
   }, [state.userActions])
 
-  <div className="container fixed bottom-0 right-0 flex flex-col max-w-sm px-2 z-40 w-full">
+  <div
+    className="t-container t-fixed t-bottom-0 t-right-0 t-flex t-flex-col t-max-w-sm t-px-2 t-z-40 t-w-full">
     {state.showChat
       ? <div
-          className=" transition duration-700 ease-in-out bg-white shadow-lg rounded-lg relative overflow-hidden w-full custom-height border">
-          <div className=" overflow-y-auto p-4 space-y-4 items-end h-full justify-end">
-            <div className="flex flex-col z-10 ml-4 text-white w-full">
-              <div className="text-3xl mb-2 text-gray-800"> {str("Hi")} </div>
-              <div className="w-60 text-gray-800 text-lg mb-1">
+          className=" t-transition t-duration-700 t-ease-in-out   t-bg-white t-shadow-lg t-rounded-lg t-relative t-overflow-hidden t-w-full custom-height t-border">
+          <div className=" t-overflow-y-auto t-p-4 t-space-y-4 t-items-end t-h-full t-justify-end">
+            <div className="t-flex t-flex-col t-z-10 t-ml-4 t-text-white t-w-full">
+              <div className="t-text-3xl t-mb-2 t-text-gray-800"> {str("Hi")} </div>
+              <div className="t-w-60 t-text-gray-800 t-text-lg t-mb-1">
                 {str("I'm CoWin your virtual assistant, Lets get started! ")}
               </div>
             </div>
-            <div className="space-y-2 flex flex-col">
+            <div className="t-space-y-2 t-flex t-flex-col">
               {Js.Array.mapi(
                 (m, i) =>
                   <div
@@ -158,13 +160,13 @@ let make = () => {
               )->React.array}
             </div>
             {ReactUtils.nullIf(
-              <div className="space-y-3 flex flex-col w-full items-start">
+              <div className="t-space-y-3 t-flex t-flex-col t-w-full t-items-start">
                 {Js.Array.mapi(
                   (p, i) =>
                     <div
                       key={string_of_int(i)}
                       onClick={_ => send(AppendUserAction(p))}
-                      className="border rounded-lg shadow inline-flex px-4 py-1 text-md">
+                      className="t-border t-rounded-lg t-shadow t-inline-flex t-px-4 t-py-1 t-text-md">
                       {Prompt.title(p)->str}
                     </div>,
                   filteredActions(data, state.selectedGroup),
@@ -173,8 +175,9 @@ let make = () => {
               state.loading,
             )}
             {ReactUtils.nullUnless(
-              <div className=" flex flex-col w-full items-start">
-                <div className="border rounded-lg shadow inline-flex px-4 py-1 text-md">
+              <div className="t-flex t-flex-col t-w-full t-items-start">
+                <div
+                  className="t-border t-rounded-lg t-shadow t-inline-flex t-px-4 t-py-1 t-text-md">
                   {str("Loading...")}
                 </div>
               </div>,

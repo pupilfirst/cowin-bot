@@ -50,7 +50,7 @@ let make = (~slug) => {
     Js.Array.mapi(
       (d, i) =>
         <div
-          className="border rounded-lg shadow inline-flex px-4 py-1 text-md text-white bg-blue-700">
+          className="t-border t-rounded-lg t-shadow t-inline-flex t-px-4 t-py-1 t-text-md t-text-white t-bg-blue-700">
           {str(d)}
         </div>,
       state.data,

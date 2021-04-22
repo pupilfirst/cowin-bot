@@ -5,9 +5,5 @@ module.exports = {
   purge: {
     content: ["./src/**/*.html", "./src/**/*.res", "./src/**/*.bs.js"],
   },
+  prefix: "t-",
 };
-
-// Add the following if you want to whitelist classes
-// options: {
-//   whitelistPatterns: [/^bg-/, /^text-/, /^border-/, /^hover:/],
-// },
