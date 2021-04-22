@@ -61,7 +61,7 @@ let handleGithubresponseCB = (send, json) => {
   let dataArray = Js.Array.filter(f => f !== "", ParseMD.parse(base64DecodedData))
 
   Js.Array.forEach(d => send(AppendMessages(Message.addBotInput(d))), dataArray)
-  send(SetSelectedGroup("default"))
+  send(SetSelectedGroup("greet"))
 }
 
 let importDataFromGithub = (slug, send) => {
