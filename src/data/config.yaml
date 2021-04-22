@@ -4,11 +4,66 @@ default:
       actionType: ChangeFilterGroup
       group_name: greet
 greet:
-  - title: Help me with registration
+  - title: Vaccine registration
+    action:
+      actionType: ChangeFilterGroup
+      group_name: registration
+  - title: About Covid
+    action:
+      actionType: ChangeFilterGroup
+      group_name: about_covid
+  - title: Vaccines
+    action:
+      actionType: ChangeFilterGroup
+      group_name: vaccines
+vaccines:
+  - title: What is an AEFI?
     action:
       actionType: LoadDataFromLink
       link: docs/en/vaccines/aefi.md
-  - title: Help me with appointment scheduling
+  - title: What is herd immunity?
     action:
       actionType: LoadDataFromLink
-      link: docs/en/vaccines/aefi.md
+      link: docs/en/vaccines/herd_immunity.md
+  - title: How does vaccines work?
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/vaccines/how_does_vaccines_work.md
+about_covid:
+  - title: What is COVID-19
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/about_covid/what_is_covid.md
+  - title: Good Practices to follow
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/about_covid/good-practices.md
+  - title: How can we protect ourselves and others against COVID-19?
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/about_covid/protecting_against_covid.md
+  - title: Effects of COVID-19 on humans
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/about_covid/effect_of_covid.md
+registration:
+  - title: Where can I register for COVID-19 vaccination?
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/registration/where-can-i-register-for-covid-19-vaccination.md
+  - title: How can I schedule the second dose of vaccination?
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/registration/scheduling-second-dose.md
+  - title: How can I reschedule my appointment for vaccination ?
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/registration/rescheduling_appointment.md
+  - title: How can I schedule my appointment for vaccination?
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/registration/scheduling-vaccination.md
+  - title: How can I avail the Vaccination Certificate?
+    action:
+      actionType: LoadDataFromLink
+      link: docs/en/registration/vaccination_certificate.md
