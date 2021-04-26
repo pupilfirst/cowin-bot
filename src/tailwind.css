@@ -8,7 +8,7 @@ button:focus {
   outline: none;
 }
 @layer components {
-  .chat-container__custom-height {
+  .chat-root__scroll-container {
     overscroll-behavior-y: contain;
   }
 }

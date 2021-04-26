@@ -145,9 +145,10 @@ let make = () => {
     className="t-container t-fixed t-bottom-0 t-right-0 t-flex t-flex-col t-max-w-sm t-px-2 t-z-40 t-w-full">
     {state.showChat
       ? <div
-          className="chat-container__custom-height t-h-[30rem] md:t-h-[32rem] t-bg-white t-shadow-xl t-rounded-lg t-border t-relative t-w-full">
+          className="t-h-[30rem] md:t-h-[32rem] t-bg-white t-shadow-xl t-rounded-lg t-border t-relative t-w-full">
           <div className="t-flex t-flex-col t-h-full t-justify-end">
-            <div className="t-overflow-y-auto t-flex t-h-full t-flex-col">
+            <div
+              className="chat-root__scroll-container t-overflow-y-auto t-flex t-h-full t-flex-col">
               <div className="t-flex t-items-start t-z-10 t-text-white t-w-full t-h-full">
                 <img
                   src=graduateIcon
