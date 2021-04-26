@@ -7,7 +7,11 @@
 button:focus {
   outline: none;
 }
-
+@layer components {
+  .chat-container__custom-height {
+    overscroll-behavior-y: contain;
+  }
+}
 @screen md {
   * {
     scrollbar-width: thin;
