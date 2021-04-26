@@ -79,10 +79,10 @@ let toggleButton = (state, send) => {
   <div className="t-flex t-justify-end">
     <button
       onClick={_ => send(ToggleShowChat)}
-      className="t-bg-blue-600 t-relative t-rounded-full t-transition t-w-16 t-h-16 t-my-4 t-mx-2 t-flex t-items-center t-justify-center t-cursor-pointer t-shadow-xl t-text-white ">
+      className="t-bg-blue-600 t-relative t-rounded-full t-transition t-w-14 t-h-14 md:t-w-16 md:t-h-16 t-my-2 md:t-my-3 t-mx-2 t-flex t-items-center t-justify-center t-cursor-pointer t-shadow-xl t-text-white ">
       <span
         className={"t-absolute t-inline-flex t-h-full t-w-full t-rounded-full t-bg-blue-400 " ++ {
-          state.showChat ? "t-opacity-0" : "t-animate-ping t-opacity-50 t-z-10 "
+          state.showChat ? "t-opacity-0" : "t-animate-ping t-opacity-20 md:t-opacity-50 t-z-10 "
         }}
       />
       {state.showChat
@@ -145,7 +145,7 @@ let make = () => {
     className="t-container t-fixed t-bottom-0 t-right-0 t-flex t-flex-col t-max-w-sm t-px-2 t-z-40 t-w-full">
     {state.showChat
       ? <div
-          className="t-bg-white t-shadow-xl t-rounded-lg t-border t-relative t-w-full custom-height">
+          className="t-h-[30rem] md:t-h-[32rem] t-bg-white t-shadow-xl t-rounded-lg t-border t-relative t-w-full">
           <div className="t-flex t-flex-col t-h-full t-justify-end">
             <div className="t-overflow-y-auto t-flex t-h-full t-flex-col">
               <div className="t-flex t-items-start t-z-10 t-text-white t-w-full t-h-full">
